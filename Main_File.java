@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+
 
 public class Main_File {
     public static void main(String[] args) {
@@ -48,6 +50,9 @@ public class Main_File {
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
+            db_connectivity.LOGGER.log(Level.SEVERE,"Failed  to insert Account details",e);
+            JOptionPane.showMessageDialog(null,"an error occured when inserting account details.");
+
             e.printStackTrace();
             return false;
         }
